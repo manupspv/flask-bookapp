@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body %}
+        <div>
+          <form action="{{ url_for('login') }}">
+          <input style="float:right" type="submit" value="Log In"/>
+          </form>
+          <h1 style="color:green; display: inline">CS50-Books</h1><hr><br>
+        </div>
+
+        <div style="font-size:25px; text-align: center">
+          Not a user, Sign Up here!
+        <div>
+        <span style="float:center; font-size:15px; color:red ">{{ message }}</span><br>
+
+        <form action="{{ url_for('signup') }}" method="post">
+            <input style="float:center" type="text" name="name" placeholder="Enter your name" required><br>
+            <input style="float:center" type="email" name="email" placeholder="Enter your email" required><br>
+            <input style="float:center" type="text" name="user_name" placeholder="Enter a username" required><br>
+            <input style="float:center" type="password" id="password" name="password" placeholder="Enter Your Password" required><br>
+            <input style="float:center" type="password" id="confirm_password" name="confirm_password"  placeholder="Confirm Password" required><br>
+            <button style="float:center" >Submit</button>
+        </form>
+        <br><hr>
+{% endblock body %}

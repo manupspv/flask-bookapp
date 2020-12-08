@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block body %}
+        <div>
+          <form action="{{ url_for('logout') }}">
+          <input style="float:right" type="submit" value="Log Out"/>
+          </form>
+          <h1 style="color:green; display: inline">CS50-Books</h1><hr><br>
+        </div>
+
+        <div style="font-size:25px">
+          Search
+        </div><br>
+        <form action="{{ url_for('books') }}" method="post">
+            <input type="text" name="name" placeholder="Search here" required>
+            <button>Search</button><br><br>
+            <a>Search by:</a>
+            <input type="radio" id="isbn" name="search" value="isbn">
+            <label for="isbn">ISBN</label>
+            <input type="radio" id="title" name="search" value="title">
+            <label for="title">Title</label>
+            <input type="radio" id="author" name="search" value="author">
+            <label for="author">Author</label>
+        </form>
+        {% if books %}
+            <ul>
+            {% for item in books %}
+             <li><a href="{{ url_for('bookpage', book= item.title ) }}">{{ item.title }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif  %}
+        <div style= "color: red; padding-top: 10px " >
+          {{ message }}
+        </div>
+{% endblock body %}

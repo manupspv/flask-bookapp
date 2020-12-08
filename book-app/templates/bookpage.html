@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block body %}
+        <div>
+          <form action="{{ url_for('logout') }}">
+          <input style="float:right" type="submit" value="Log Out"/>
+          </form>
+          <h1 style="color:green; display: inline">CS50-Books</h1><hr>
+        </div>
+        <h2>{{ book }}</h2>
+        {% for item in facts %}
+            <a>ISBN  : {{ item.isbn }}</a><br>
+            <a>Author: {{ item.author }}</a><br>
+            <a>Year  : {{ item.year }}</a><br><br>
+            <form action="{{ url_for('bookpage', book= item.title ) }}" method="post">
+                <label for="rating">Rating:</label>
+                <input id="rating" type="number" min="0" max="5" name="rating"><br><br>
+                <label for="review">Review:</label>
+                <input id="review" type="text" name="review"><br><br>
+                <button style="float:center" >Submit</button>
+            </form>
+        {% endfor %}<br>
+        {{ msg }}<br>
+
+
+        {% for item in review %}
+          {% if item.review  %}
+            <a>Review  : {{ item.review }}</a><br>
+          {% else %}
+            <a>Review  : No review yet.</a><br>
+          {% endif %}
+          {% if item.rating  %}
+            <a>Rating  : {{ item.rating }}</a><br>
+          {% else %}
+            <a>Review  : No rating yet.</a><br>
+          {% endif %}
+        {% endfor %}
+
+{% endblock body %}
